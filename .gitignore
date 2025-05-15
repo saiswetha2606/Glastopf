@@ -1,0 +1,49 @@
+*.py[cod]
+*.swp
+__pycache__
+
+# C extensions
+*.so
+
+# Packages
+*.egg
+*.egg-info
+dist
+build
+eggs
+parts
+var
+sdist
+develop-eggs
+.installed.cfg
+lib
+lib64
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.tox
+nosetests.xml
+
+# Translations
+*.mo
+
+# virtualenv
+venv/
+
+# Mr Developer
+.mr.developer.cfg
+.project
+.pydevproject
+glastopf.cfg
+.vscode
+
+glastopf/sandbox/sandbox.php
+log/
+work_dir/
+data/
+db/
+
+*.gz

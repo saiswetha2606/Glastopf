@@ -1,0 +1,48 @@
+language: python
+services:
+ - mongodb
+python:
+  - "2.7"
+virtualenv:
+  system_site_packages: true
+before_install:
+ - REPO=`pwd`
+ #- phpenv versions
+ #- phpenv shell 7.1
+ - sudo add-apt-repository -y ppa:ondrej/php
+ - sudo apt-get -qq update
+ - sudo apt-get -qq install python-dev gfortran libxml2 dnsutils php7.0-dev
+ - sudo service mongod restart
+# Install hpfeeds
+ - cd /tmp
+ - git clone git://github.com/rep/hpfeeds.git hpfeeds
+ - cd hpfeeds
+ - python setup.py install
+# Install Better Function Replacer (BFR)
+ - cd /tmp
+ - git clone git://github.com/mushorg/BFR.git
+ - cd BFR
+ - phpize7.0
+ - ./configure --enable-bfr --disable-maintainer-zts
+ - make
+ - sudo make install
+# TODO: Extract path from output
+ - sudo bash -c 'echo "enable_dl = On >> /etc/php/7.0/cli/php.ini"'
+ - sudo bash -c 'echo "zend_extension = "$(find /home/travis/.phpenv/versions -name bfr.so) >> /etc/php/7.0/cli/php.ini'
+ - php7.0 --version
+ - cd $REPO/glastopf/sandbox
+ - sudo make
+ - pwd
+# install pylibinjection
+ - cd /tmp
+ - pip install cython
+ - git clone --recursive https://github.com/mushorg/pylibinjection.git
+ - cd pylibinjection
+ - python setup.py install
+install:
+ - export PYTHONIOENCODING=UTF8 # just in case
+ - cd $REPO
+ - pip install -r requirements.txt
+# command to run tests
+script:
+ - nosetests

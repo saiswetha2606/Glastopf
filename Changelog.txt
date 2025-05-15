@@ -1,0 +1,23 @@
+Glastopf 3.1.2 (release 2014-02-19)
+    * Fixed delay while bootstrapping the dork database.
+
+Glastopf 3.1.1 (release 2014-02-17)
+    * Fixed surf cert IDS logger (Issue #140).
+    * Syslog logger now outputs sensor host/port instead of the attacker supplied HOST header.
+    * Added STIX/TAXII logger.
+    * Detection of SQLi attempts are now done using Libinjection from CLient9.
+    * Various minor improvements and bugfixes.
+    * Attack surface now customizable.
+    * Not backwards compatible with Glastopf 3.0.8
+
+Glastopf 3.0.8 (release 2013-06-06)
+    * Added configurable server banner.
+    * Fixed MySQL bug which crashed the log worker on certain requests.
+    * Fixed HPFriends bug which crashed the log worker when transmitting events with attached files.
+
+Glastopf 3.0.7 (release 2013-05-03)
+    * Added support for Jinja2 templates.
+    * Fixed MySQL logging (Issue #81).
+    * Fixed files logging with hpfeed (Issue #81).
+    * Changed http parsing to use the builtin BaseHTTPRequestHandler (Issue #76, #75).
+    * Disabled profiling support.
